@@ -21,6 +21,9 @@
   </head>
   <body>
 
+    <div class="container-fluid">
+      <div class="container">
+
     <h1>Simple linear diagram displaying data from an influxdb server using flux</h1>
 
     <img src="images/logo/vscp_logo_text_box.png" width="100">
@@ -54,6 +57,9 @@
 
     <hr />
     Copyright &copy; 2000-2021 <a href="https://www.grodansparadis.com">Ake Hedman, the VSCP Project</a>
+
+      </div>
+    </div>
 
     <script>
 
@@ -155,8 +161,17 @@
             console.log(o._time,o._value);
 
             var d = new Date(o._time);
-            var xpoint = "" + d.getHours() + ":" + d.getMinutes();
-            console.log(xpoint);
+            var xpoint = "" + d.getHours();
+            if (xpoint.length < 2) {
+              xpoint = "0" + xpoint;
+            }
+            xpoint += ":";
+            if (d.getMinutes()<10) {
+              xpoint += "0" + d.getMinutes();
+            }
+            else {
+              xpoint += d.getMinutes();
+            }            
             LineGraph.data.datasets[0].data.push({x: xpoint, y: o._value});
           },
           error(error) {

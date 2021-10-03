@@ -24,12 +24,15 @@
     <div class="container-fluid">
       <div class="container">
 
+        <img src="images/logo/vscp_logo_text_box.png" width="100">
+
         <div class="row">	
           <h1>Simple linear diagram displaying wind direction data from an influxdb server using flux</h1>
         </div> 
+
         
-        <img src="images/logo/vscp_logo_text_box.png" width="100">
         <br><br>
+        <hr>
 
         <div class="row">
           <div class="chart-container" style="position: relative; height:600; width:600">
@@ -37,15 +40,23 @@
           </div>
         </div>
 
+        <br><br>
+        <hr>
+        <br><br>
+
+        <div>
+          <img src="./images/weather_station.jpg" class=".img-fluid. max-width: 50%;" style="width:500px;height:600px;">
+        </div>
+
         <div class="row">
           <br />
           <hr />
           <br />
-          <img src="./images/weather_station.jpg" width="100" >
+          
           <p>
             This diagram (using charts from <a href="https://www.chartjs.org/" target="new">charts.js</a>) 
             displays real time wind direction data which is fetched from a local server here at 
-            the Grodans Paradis AB office. The wind direction comes from a 
+            the Grodans Paradis AB office. The wind direction in this sample comes from a 
             <a href="https://www.sparkfun.com/products/15901">Weather Meter Kit</a>
             bought from <a href="https://www.sparkfun.com/">Sparc Fun</a>. The displayed graphics is the 
             direction for the last hour.
@@ -60,12 +71,19 @@
           </p>
           <p>
             You can look at the raw wind vane voltage events by subscribing to the VSCP demo broker at 
-            topic <i>vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:01:00:03/3/15/2/0</i>
+            topic <i>vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:01:00:03/15/2/#</i>
           </p>
+          <pre>
+            mosquitto_sub -h demo.vscp.org -u vscp -P secret -t vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:01:00:03/3/15/2/0
+          </pre>
           <p>
             You can look at the wind vane direction events by subscribing to the VSCP demo broker at topic 
-            <i>vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:00:01:04/4/1040/30/0</i>
+            <i>vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:00:01:04/4/1040/30/0/#</i>
           </p>
+
+          <pre>
+            mosquitto_sub -h demo.vscp.org -u vscp -P secret -t vscp/25:00:00:00:00:00:00:00:00:00:00:00:05:00:01:04/4/1040/30
+          </pre>
 
           <p>
             Update the page with the <b>F5</b> key to get the latest reading.
